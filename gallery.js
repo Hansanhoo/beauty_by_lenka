@@ -1,29 +1,42 @@
-const galleryContainer = document.getElementById("gallery-container");
+document.addEventListener("DOMContentLoaded", function() {
 
-// Change this number to how many images you have
-const numberOfImagesGallery = 10;
+    const gallery = document.getElementById("gallery");
 
-for (let i = 1; i <= numberOfImagesGallery; i++) {
-    const img = document.createElement("img");
-    img.src = `images/gallery${i}.jpg`;
-    img.alt = `Beauty work ${i}`;
-    galleryContainer.appendChild(img);
-}
+    // Define sections with their images
+    const sections = [
+        {
+            title: "Elegant",
+            images: ["gallery1.jpg", "lenka_konkolova_beauty2.jpg"]
+        },
+        {
+            title: "Make Up",
+            images: ["lenka_konkolova_beauty1.jpg", "gallery2.jpg" ]
+        },
+        {
+            title: "Draußen",
+            images: ["lenka_konkolova_editorial1.jpg", "lenka_konkolova_editorial2.jpg"]
+        }
+    ];
 
-const numerOfImagesLenkaBeauty = 2;
+    sections.forEach(section => {
+        // Create heading for section
+        const heading = document.createElement("p");
+        heading.textContent = section.title;
+        heading.classList.add("gallery-heading");
+        gallery.appendChild(heading);
 
-for (let i = 1; i <= numerOfImagesLenkaBeauty; i++) {
-    const img = document.createElement("img");
-    img.src = `images/lenka_konkolova_beauty${i}.jpg`;
-    img.alt = `Beauty work ${i}`;
-    galleryContainer.appendChild(img);
-}
+        // Create container for images
+        const container = document.createElement("div");
+        container.classList.add("gallery-section");
+        gallery.appendChild(container);
 
-const numberOfImages = 5;
+        // Add images
+        section.images.forEach(file => {
+            const img = document.createElement("img");
+            img.src = `images/${file}`;
+            img.alt = section.title;
+            container.appendChild(img);
+        });
+    });
 
-for (let i = 1; i <= numberOfImages; i++) {
-    const img = document.createElement("img");
-    img.src = `images/lenka_konkolova_editorial${i}.jpg`;
-    img.alt = `Beauty work ${i}`;
-    galleryContainer.appendChild(img);
-}
+});
