@@ -7,7 +7,7 @@
 
 /* Body */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: #F49B83; /* soft blush background */
     color: #3b000f;
     line-height: 1.6;
@@ -17,7 +17,7 @@ body {
 .hero {
     background: linear-gradient(120deg, #9F022C, #F49B83); /* red → soft blush */
     position: relative;
-    height: 80vh;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +59,10 @@ nav {
     background-color: #9F022C;
     padding: 15px 20px;
     text-align: center;
+    position: sticky;       /* <-- makes it stick */
+    top: 0;                 /* sticks to the very top */
+    z-index: 1000;          /* ensures it’s above other content */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* optional: subtle shadow */
 }
 
 nav a {
@@ -79,10 +83,34 @@ nav a:hover {
     text-align: center;
 }
 
+
+/* BEAUTY TEXT STYLE */
+.section p {
+   font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.9;
+    font-weight: 300;
+    color: #5a4a4a;
+    letter-spacing: 0.3px;
+    max-width: 760px;
+    margin: 0 auto 24px auto;
+    text-align: center;
+       text-shadow: 0 0 1px rgba(0,0,0,0.04);
+}
+
+/* Luxury Intro Absatz (optional – erster Absatz) */
+.section p:first-of-type {
+    font-size: 20px;
+    font-weight: 400;
+    color: #3b2f2f;
+    font-style: italic;
+}
 .section h2 {
     color: black;
     font-size: 2rem;
     margin-bottom: 20px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Services */
@@ -118,7 +146,84 @@ nav a:hover {
 }
 
 
-/* Gallery Headings */
+
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #9F022C;
+    color: white;
+    border: none;
+    padding: 3px 5px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1rem;
+    z-index: 10;
+}
+
+.arrow.left {
+    left:0%;
+}
+
+.arrow.right {
+    right:0%;
+}
+
+.gallery {
+    overflow: hidden;
+    padding: 0 20px;
+}
+.gallery-wrapper {
+    position: relative;
+    width: 80%;
+    left: 10%;
+    overflow: hidden;
+    margin: 30px 0;
+    padding: 0 5px;
+    display: center;
+    justify-content: center; /* center the track inside wrapper */
+}
+
+.gallery-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 3.6%;
+    justify-content: center;
+    scroll-behavior: smooth;
+    will-change: transform;
+}
+
+
+.gallery-track img {
+    width: calc(21%);
+    border-radius: 15px;
+    flex-shrink: 0;
+    height: 80%;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .gallery-track img {
+        width: calc(33.333% - 20px); /* 3 per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-track img {
+        width: calc(50% - 15px); /* 2 per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-track img {
+        width: calc(100% - 15px); /* 1 per row */
+    }
+}
+
+
 h2 {
     color: black;
     font-size: 2rem;
@@ -126,29 +231,11 @@ h2 {
     text-align: center;
 }
 .gallery-heading {
-    color: #9F022C;             /* white text on red background */
-    text-align: center;
-    margin: 40px 0 40px 0;      /* spacing above and below heading */
+    color: black;
     font-size: 2rem;
-    font-weight: 500;
-}
+    margin-bottom: 20px;
+    text-align: center;
 
-/* Each section container */
-.gallery-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;                  /* space between images */
-    margin-bottom: 50px;        /* space after section */
-}
-
-/* Images in gallery */
-.gallery-section img {
-    width: 300px;
-    max-width: 90%;             /* responsive on smaller screens */
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(159,2,44,0.2);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 /* Hover effect on images */
@@ -265,5 +352,37 @@ footer {
 
     .service-box {
         width: 95%;
+    }
+}
+/* SPLASH SCREEN */
+#splash {
+    position: fixed;
+    inset: 0;
+    background: #fffaf9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+#splash-logo {
+    width: 260px;
+    position: absolute;
+    transition: transform 1.4s ease, opacity 1.2s ease;
+}
+
+
+/* Logo blendet ein */
+@keyframes logoFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Splash verschwindet */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
     }
 }
