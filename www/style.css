@@ -344,7 +344,13 @@ footer {
         width: 95%;
     }
 }
+@media (max-height: 700px) {
 
+    .hero h1 {
+        top: 35%;
+
+    }
+}
 /* SPLASH SCREEN */
 #splash {
     position: fixed;
